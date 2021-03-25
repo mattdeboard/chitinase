@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true
+    },
+    "editor.tabCompletion": "on",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.organizeImports": true
+    },
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.preferredDarkColorTheme": "One Dark Pro"
+  },
+  "extensions": {
+    "recommendations": [
+      "zhuangtongfa.material-theme",
+      "pkief.material-icon-theme"
+    ]
+  }
+}
