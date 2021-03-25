@@ -2,27 +2,38 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 
-const dist = path.resolve(__dirname, "dist");
+const pkg = path.resolve(__dirname, "pkg");
 
 module.exports = {
   mode: "production",
   entry: {
-    index: "./js/index.js"
+    index: "./js/index.ts",
+  },
+  devtool: "inline-source-map",
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    path: dist,
-    filename: "[name].js"
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "pkg"),
   },
   devServer: {
-    contentBase: dist,
+    contentBase: pkg,
   },
   plugins: [
-    new CopyPlugin([
-      path.resolve(__dirname, "static")
-    ]),
+    new CopyPlugin([path.resolve(__dirname, "static")]),
 
     new WasmPackPlugin({
       crateDirectory: __dirname,
     }),
-  ]
+  ],
 };

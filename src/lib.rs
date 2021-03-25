@@ -1,6 +1,7 @@
+use std::f64;
 use wasm_bindgen::prelude::*;
-use web_sys::console;
-
+use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
 // When the `wee_alloc` feature is enabled, this uses `wee_alloc` as the global
 // allocator.
 //
@@ -9,16 +10,55 @@ use web_sys::console;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-// This is like the `main` function, except for JavaScript.
+#[wasm_bindgen(module = "chitinase")]
+pub struct Image {}
+
+#[wasm_bindgen(module = "chitinase")]
+impl Image {
+  #[wasm_bindgen(constructor)]
+  pub fn new() -> Image {
+    Image {}
+  }
+}
+
 #[wasm_bindgen(start)]
-pub fn main_js() -> Result<(), JsValue> {
-  // This provides better error messages in debug mode.
-  // It's disabled in release mode so it doesn't bloat up the file size.
-  #[cfg(debug_assertions)]
-  console_error_panic_hook::set_once();
+pub fn start() {
+  let document = web_sys::window().unwrap().document().unwrap();
+  let canvas = document.get_element_by_id("canvas").unwrap();
+  let canvas: web_sys::HtmlCanvasElement = canvas
+    .dyn_into::<web_sys::HtmlCanvasElement>()
+    .map_err(|_| ())
+    .unwrap();
 
-  // Your code goes here!
-  console::log_1(&JsValue::from_str("Hello world!"));
+  let context = canvas
+    .get_context("2d")
+    .unwrap()
+    .unwrap()
+    .dyn_into::<web_sys::CanvasRenderingContext2d>()
+    .unwrap();
 
-  Ok(())
+  context.begin_path();
+
+  // Draw the outer circle.
+  context
+    .arc(75.0, 75.0, 50.0, 0.0, f64::consts::PI * 2.0)
+    .unwrap();
+
+  // Draw the mouth.
+  context.move_to(110.0, 75.0);
+  context.arc(75.0, 75.0, 35.0, 0.0, f64::consts::PI).unwrap();
+
+  // Draw the left eye.
+  context.move_to(65.0, 65.0);
+  context
+    .arc(60.0, 65.0, 5.0, 0.0, f64::consts::PI * 2.0)
+    .unwrap();
+
+  // Draw the right eye.
+  context.move_to(95.0, 65.0);
+  context
+    .arc(90.0, 65.0, 5.0, 0.0, f64::consts::PI * 2.0)
+    .unwrap();
+
+  context.stroke();
 }
