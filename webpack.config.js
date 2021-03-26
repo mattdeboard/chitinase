@@ -1,6 +1,5 @@
 const path = require("path");
 const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const CopyPlugin = require("copy-webpack-plugin");
 const pkg = path.resolve(__dirname, "pkg");
@@ -56,18 +55,9 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin([path.resolve(__dirname, "static")]),
-    // new HtmlWebpackPlugin({
-    //   scriptLoading: "blocking",
-    //   template: "static/index.html",
-    // }),
     new WasmPackPlugin({
       crateDirectory: path.resolve(__dirname, "."),
-    }), // Have this example work in Edge which doesn't ship `TextEncoder` or
-    // `TextDecoder` at this time.
-    // new webpack.ProvidePlugin({
-    //   TextDecoder: ["text-encoding", "TextDecoder"],
-    //   TextEncoder: ["text-encoding", "TextEncoder"],
-    // }),
+    }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
