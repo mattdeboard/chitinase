@@ -4,27 +4,28 @@
   "version": "0.1.0",
   "scripts": {
     "build": "rimraf dist pkg && webpack",
-    "start": "rimraf dist pkg && webpack-dev-server --open -d",
+    "start": "rimraf dist pkg && webpack serve --open",
     "test": "cargo test && wasm-pack test --headless"
   },
-  "type": "module",
   "dependencies": {
-    "@babel/polyfill": "^7.12.1",
-    "chitinase": "file:pkg"
+    "@babel/polyfill": "^7.12.1"
   },
+  "type": "module",
   "devDependencies": {
     "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.13.12",
     "@babel/preset-typescript": "^7.13.0",
     "@wasm-tool/wasm-pack-plugin": "^1.1.0",
+    "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^5.0.3",
     "html-webpack-plugin": "^5.3.1",
     "rimraf": "^3.0.0",
     "ts-loader": "^8.0.18",
     "typescript": "^4.2.3",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.3",
-    "webpack-dev-server": "^3.7.1"
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

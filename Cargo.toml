@@ -23,7 +23,7 @@ lto = true
 [dependencies]
 # The `wasm-bindgen` crate provides the bare minimum functionality needed
 # to interact with JavaScript.
-wasm-bindgen = "0.2.45"
+wasm-bindgen = "0.2.72"
 
 # `wee_alloc` is a tiny allocator for wasm that is only ~1K in code size
 # compared to the default allocator's ~10K. However, it is slower than the default
@@ -47,8 +47,8 @@ features = [
 # logging them with `console.error`. This is great for development, but requires
 # all the `std::fmt` and `std::panicking` infrastructure, so it's only enabled
 # in debug mode.
-[target."cfg(debug_assertions)".dependencies]
-console_error_panic_hook = "0.1.5"
+# [target."cfg(debug_assertions)".dependencies]
+# console_error_panic_hook = "0.1.5"
 
 # These crates are used for running unit tests.
 [dev-dependencies]

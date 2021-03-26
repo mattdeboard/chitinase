@@ -36,6 +36,13 @@
 
 // main();
 
-async function main() {
-  await import("../pkg").catch(console.error);
-}
+// async function main() {
+//   const lib = await import("../pkg").catch(console.error);
+//   console.log(lib);
+// }
+
+// main();
+
+const lib = import("../pkg");
+
+lib.then((m) => m.start()).catch(console.error);

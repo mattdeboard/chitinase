@@ -1,30 +1,29 @@
 use std::f64;
 use wasm_bindgen::prelude::*;
-use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 // When the `wee_alloc` feature is enabled, this uses `wee_alloc` as the global
 // allocator.
 //
 // If you don't want to use `wee_alloc`, you can safely delete this.
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+// #[cfg(feature = "wee_alloc")]
+// #[global_allocator]
+// static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-#[wasm_bindgen(module = "chitinase")]
-pub struct Image {}
+// #[wasm_bindgen(module = "chitinase")]
+// pub struct Image {}
 
-#[wasm_bindgen(module = "chitinase")]
-impl Image {
-  #[wasm_bindgen(constructor)]
-  pub fn new() -> Image {
-    Image {}
-  }
-}
+// #[wasm_bindgen(module = "chitinase")]
+// impl Image {
+//   #[wasm_bindgen(constructor)]
+//   pub fn new() -> Image {
+//     Image {}
+//   }
+// }
 
 #[wasm_bindgen(start)]
 pub fn start() {
   let document = web_sys::window().unwrap().document().unwrap();
-  let canvas = document.get_element_by_id("canvas").unwrap();
+  let canvas = document.get_element_by_id("my-canvas").unwrap();
   let canvas: web_sys::HtmlCanvasElement = canvas
     .dyn_into::<web_sys::HtmlCanvasElement>()
     .map_err(|_| ())
