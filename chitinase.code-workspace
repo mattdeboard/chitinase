@@ -19,7 +19,8 @@
     "workbench.preferredDarkColorTheme": "One Dark Pro",
     "editor.tabSize": 2,
     "editor.formatOnPaste": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "rust-analyzer.inlayHints.enable": false
   },
   "extensions": {
     "recommendations": [
