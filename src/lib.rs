@@ -5,6 +5,7 @@ use wasm_bindgen::JsCast;
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+mod game_state;
 
 #[wasm_bindgen(start)]
 pub fn start() {
