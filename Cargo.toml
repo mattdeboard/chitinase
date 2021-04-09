@@ -21,6 +21,7 @@ lto = true
 #default = ["wee_alloc"]
 
 [dependencies]
+daggy = "*"
 # The `wasm-bindgen` crate provides the bare minimum functionality needed
 # to interact with JavaScript.
 wasm-bindgen = "0.2.72"
@@ -40,7 +41,7 @@ features = [
   'Element',
   'HtmlCanvasElement',
   'Window',
-  'console'
+  'console',
 ]
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
